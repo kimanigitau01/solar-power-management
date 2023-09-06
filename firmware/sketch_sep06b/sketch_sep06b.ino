@@ -7,8 +7,8 @@ const int relayPin = 7;
 const int rs = 13, en = 12, d4 = 11, d5 = 10, d6 = 9, d7 = 8;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
-float solvoltage = 0.0;
-float batvoltage = 0.0;
+float solVoltage = 0.0;
+float batVoltage = 0.0;
 
 // Floats for resistor values in divider (in ohms)
 float R1 = 30000.0;
@@ -60,13 +60,13 @@ void loop() {
 float getSolarVoltage() {
   int solarAdc_value = analogRead(solarPin);
   float solarAdc_voltage = (solarAdc_value * ref_voltage) / 1024.0;
-  solvoltage = solarAdc_voltage / (R2 / (R1 + R2));
-  return solvoltage;
+  solVoltage = solarAdc_voltage / (R2 / (R1 + R2));
+  return solVoltage;
 }
 
 float getBatteryVoltage() {
   int batteryAdc_value = analogRead(batteryPin);
   float batteryAdc_voltage = (batteryAdc_value * ref_voltage) / 1024.0;
-  batvoltage = batteryAdc_voltage / (R2 / (R1 + R2));
-  return batvoltage;
+  batVoltage = batteryAdc_voltage / (R2 / (R1 + R2));
+  return batVoltage;
 }
